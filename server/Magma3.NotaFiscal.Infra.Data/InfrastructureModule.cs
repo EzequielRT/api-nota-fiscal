@@ -25,13 +25,13 @@ namespace Magma3.NotaFiscal.Infra.Data
         {
             var connectionString = configuration.GetConnectionString("NotaFiscalCs");
 
-            services.AddDbContext<NotaFiscalDbContext>(options => 
+            services.AddDbContext<NotaFiscalDbContext>(options =>
             options
                 .UseSqlServer(connectionString)
                 .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole())));
 
-            // Banco de dados em memória
-            //services.AddDbContext<NotaFiscalDbContext>(options => options.UseInMemoryDatabase("NotaFiscalDb"));
+            // Banco Sqlite para testes
+            //services.AddDbContext<NotaFiscalDbContext>(options => options.UseSqlite("Data Source=NotaFiscalDb.db"));
 
             return services;
         }

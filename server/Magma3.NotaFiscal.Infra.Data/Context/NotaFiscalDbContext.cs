@@ -7,7 +7,6 @@ namespace Magma3.NotaFiscal.Infra.Data.Context
 {
     public class NotaFiscalDbContext : DbContext
     {
-
         public NotaFiscalDbContext(DbContextOptions<NotaFiscalDbContext> options) : base(options) { }
 
         public virtual DbSet<Cliente> Clientes { get; set; }
