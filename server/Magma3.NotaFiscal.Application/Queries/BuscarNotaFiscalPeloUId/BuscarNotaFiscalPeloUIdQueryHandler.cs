@@ -15,7 +15,9 @@ namespace Magma3.NotaFiscal.Application.Queries.BuscarNotaFiscalPeloUId
 
         public async Task<NotaFiscalViewModel> Handle(BuscarNotaFiscalPeloUIdQuery request, CancellationToken cancellationToken)
         {
-            var notaFiscal = await _notaFiscalRepository.BuscarNotaFiscalPeloUIdAsync(request.NotaFiscalUId, cancellationToken);
+            var notaFiscal = await _notaFiscalRepository.BuscarNotaFiscalPeloUIdAsNoTrackingAsync(request.NotaFiscalUId, cancellationToken);
+
+            if (notaFiscal == null) return null;
 
             var notasFiscaisViewModel = NotaFiscalViewModel.FromEntity(notaFiscal);
 

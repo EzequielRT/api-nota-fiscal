@@ -1,4 +1,5 @@
 ﻿using Magma3.NotaFiscal.Domain.Entities;
+using Magma3.NotaFiscal.Domain.Enums;
 using Magma3.NotaFiscal.Domain.Repositories;
 using Magma3.NotaFiscal.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,20 @@ namespace Magma3.NotaFiscal.Infra.Data.Repositories
         public async Task<Domain.Entities.NotaFiscal> BuscarNotaFiscalPeloUIdAsync(Guid notaFiscalUId, CancellationToken cancellationToken = default)
         {
             var notaFiscal = await _context.NotasFiscais
+                .Include(x => x.Cliente)
+                    .ThenInclude(x => x.Endereco)
+                .Include(x => x.Cliente)
+                    .ThenInclude(x => x.Celular)
+                .Include(x => x.Produtos)
+                    .ThenInclude(x => x.Produto)
+                .FirstOrDefaultAsync(x => x.UId == notaFiscalUId && x.NotaFiscalStatus != NotaFiscalStatus.EXCLUIDA, cancellationToken);
+
+            return notaFiscal;
+        }
+
+        public async Task<Domain.Entities.NotaFiscal> BuscarNotaFiscalPeloUIdAsNoTrackingAsync(Guid notaFiscalUId, CancellationToken cancellationToken = default)
+        {
+            var notaFiscal = await _context.NotasFiscais
                 .AsNoTracking()
                 .Include(x => x.Cliente)
                     .ThenInclude(x => x.Endereco)
@@ -34,7 +49,7 @@ namespace Magma3.NotaFiscal.Infra.Data.Repositories
                     .ThenInclude(x => x.Celular)
                 .Include(x => x.Produtos)
                     .ThenInclude(x => x.Produto)
-                .FirstOrDefaultAsync(x => x.UId == notaFiscalUId, cancellationToken);
+                .FirstOrDefaultAsync(x => x.UId == notaFiscalUId && x.NotaFiscalStatus != NotaFiscalStatus.EXCLUIDA, cancellationToken);
 
             return notaFiscal;
         }
@@ -49,6 +64,7 @@ namespace Magma3.NotaFiscal.Infra.Data.Repositories
                     .ThenInclude(x => x.Celular)
                 .Include(x => x.Produtos)
                     .ThenInclude(x => x.Produto)
+                .Where(x => x.NotaFiscalStatus != NotaFiscalStatus.EXCLUIDA)
                 .ToListAsync(cancellationToken);
 
             return notasFiscais;

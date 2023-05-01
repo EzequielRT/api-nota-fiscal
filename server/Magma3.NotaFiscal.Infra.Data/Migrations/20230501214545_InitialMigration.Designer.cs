@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Magma3.NotaFiscal.Infra.Data.Migrations
 {
     [DbContext(typeof(NotaFiscalDbContext))]
-    [Migration("20230501211752_InitialMigration")]
+    [Migration("20230501214545_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -54,19 +54,19 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                         {
                             Id = 1,
                             NomeCliente = "Cliente 1",
-                            UId = new Guid("c5b456a8-e507-46bf-b73a-cf83f3016555")
+                            UId = new Guid("9d65d518-69d0-4a06-8148-e1ff338630ed")
                         },
                         new
                         {
                             Id = 2,
                             NomeCliente = "Cliente 2",
-                            UId = new Guid("3c11c144-0fb3-4e12-94a5-beda4bc588a4")
+                            UId = new Guid("6c8159c0-4c2f-42d9-9189-085b768147c8")
                         },
                         new
                         {
                             Id = 3,
                             NomeCliente = "Cliente 3",
-                            UId = new Guid("b10b55f3-3f60-4b14-856a-77ad6236bfad")
+                            UId = new Guid("9b93876e-cb65-438d-8447-a7102cd87080")
                         });
                 });
 
@@ -92,6 +92,10 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("data_emissao_nota_fiscal");
 
+                    b.Property<string>("NotaFiscalStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NumeroNota")
                         .IsRequired()
                         .HasColumnType("varchar(200)")
@@ -115,27 +119,30 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                             Id = 1,
                             ChaveAcesso = "84815641816",
                             ClienteId = 1,
-                            DataEmissao = new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(7278),
+                            DataEmissao = new DateTime(2023, 5, 1, 18, 45, 45, 41, DateTimeKind.Local).AddTicks(7368),
+                            NotaFiscalStatus = "ATIVA",
                             NumeroNota = "12346578415",
-                            UId = new Guid("6ab1f13a-efcf-4ee6-9bbe-28bcd89c7714")
+                            UId = new Guid("8a67c798-1034-47dd-8b2a-974db24c7233")
                         },
                         new
                         {
                             Id = 2,
                             ChaveAcesso = "32433241816",
                             ClienteId = 2,
-                            DataEmissao = new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(7291),
+                            DataEmissao = new DateTime(2023, 5, 1, 18, 45, 45, 41, DateTimeKind.Local).AddTicks(7393),
+                            NotaFiscalStatus = "ATIVA",
                             NumeroNota = "12346578415",
-                            UId = new Guid("320b47ac-512d-4fe4-9203-7f4850df76ad")
+                            UId = new Guid("999fc73b-6e02-432a-941d-e2d8234ed487")
                         },
                         new
                         {
                             Id = 3,
                             ChaveAcesso = "67545634636",
                             ClienteId = 3,
-                            DataEmissao = new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(7293),
+                            DataEmissao = new DateTime(2023, 5, 1, 18, 45, 45, 41, DateTimeKind.Local).AddTicks(7395),
+                            NotaFiscalStatus = "ATIVA",
                             NumeroNota = "12341231231",
-                            UId = new Guid("f216a845-91e4-4371-9ae5-78d441c4d793")
+                            UId = new Guid("fcc1fb68-6ab3-49ac-8331-62cfa2b98393")
                         });
                 });
 
@@ -182,29 +189,29 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DataCompra = new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(9569),
+                            DataCompra = new DateTime(2023, 5, 1, 18, 45, 45, 41, DateTimeKind.Local).AddTicks(9625),
                             NotaFiscalId = 1,
                             ProdutoId = 1,
                             ProdutoPreco = 99.99m,
-                            UId = new Guid("dc874688-6b8e-4406-801d-d069c56be22a")
+                            UId = new Guid("f1e628da-1f72-48bd-987f-d3a90b15ad1b")
                         },
                         new
                         {
                             Id = 2,
-                            DataCompra = new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(9617),
+                            DataCompra = new DateTime(2023, 5, 1, 18, 45, 45, 41, DateTimeKind.Local).AddTicks(9634),
                             NotaFiscalId = 2,
                             ProdutoId = 2,
                             ProdutoPreco = 55.99m,
-                            UId = new Guid("ea24fc65-d979-48a2-9cdf-00035e0265dd")
+                            UId = new Guid("91ae3c69-8ece-423a-acb5-b18931a93792")
                         },
                         new
                         {
                             Id = 3,
-                            DataCompra = new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(9619),
+                            DataCompra = new DateTime(2023, 5, 1, 18, 45, 45, 41, DateTimeKind.Local).AddTicks(9636),
                             NotaFiscalId = 3,
                             ProdutoId = 3,
                             ProdutoPreco = 88.00m,
-                            UId = new Guid("21257742-fa03-47c7-97d8-c8622e3d6e39")
+                            UId = new Guid("07ff6762-69ac-4f27-9656-6fa403cd5ef7")
                         });
                 });
 
@@ -242,21 +249,21 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                             Id = 1,
                             Descricao = "Produto Teste 1",
                             ProdutoPreco = 99.99m,
-                            UId = new Guid("3df3c297-a4bc-475c-95d6-c1bbc0392d18")
+                            UId = new Guid("79d8f754-f44d-48a8-a03b-bf7d2272b350")
                         },
                         new
                         {
                             Id = 2,
                             Descricao = "Produto Teste 2",
                             ProdutoPreco = 55.99m,
-                            UId = new Guid("ded68003-42ee-4c78-9e3c-00363f1fa90a")
+                            UId = new Guid("2d0dfa0b-a4e4-4616-b729-5735f657a7a9")
                         },
                         new
                         {
                             Id = 3,
                             Descricao = "Produto Teste 3",
                             ProdutoPreco = 88.00m,
-                            UId = new Guid("e3018670-fdd5-4682-9d81-45d6126932c3")
+                            UId = new Guid("3ac22123-a00d-4949-bdde-48e0e3cf7122")
                         });
                 });
 

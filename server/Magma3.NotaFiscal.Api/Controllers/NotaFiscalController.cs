@@ -1,9 +1,9 @@
-﻿using Magma3.NotaFiscal.Application.Commands.RegistrarNotaFiscal;
+﻿using Magma3.NotaFiscal.Application.Commands.ExluirNotaFiscal;
+using Magma3.NotaFiscal.Application.Commands.RegistrarNotaFiscal;
 using Magma3.NotaFiscal.Application.Queries.BuscarNotaFiscalPeloUId;
 using Magma3.NotaFiscal.Application.Queries.BuscarTodasNotasFiscais;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Magma3.NotaFiscal.Api.Controllers
 {
@@ -25,8 +25,7 @@ namespace Magma3.NotaFiscal.Api.Controllers
         {
             Guid? uId = await _mediator.Send(command, cancellationToken);
 
-            if (uId == null)
-                return BadRequest();
+            if (uId == null) return BadRequest();
 
             return CreatedAtAction(nameof(BuscarNotaFiscalPeloUId), new { notaFiscalUId = uId }, command);
         }
@@ -48,6 +47,17 @@ namespace Magma3.NotaFiscal.Api.Controllers
             if (notaFiscal == null) return NotFound();
 
             return Ok(notaFiscal);
+        }
+
+        [HttpDelete]
+        [Route("notas-fiscais/excluir/{notaFiscalUId}")]
+        public async Task<ActionResult> ExcluirNotaFiscalPeloUId([FromRoute] Guid notaFiscalUId, CancellationToken cancellationToken)
+        {
+            var notaFiscalExcluida = await _mediator.Send(new ExluirNotaFiscalCommand(notaFiscalUId), cancellationToken);
+
+            if (notaFiscalExcluida == false) return BadRequest();
+
+            return NoContent();
         }
     }
 }

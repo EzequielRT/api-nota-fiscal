@@ -100,6 +100,7 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                     numero_nota_fiscal = table.Column<string>(type: "varchar(200)", nullable: false),
                     chave_acesso_nota_fiscal = table.Column<string>(type: "varchar(200)", nullable: false),
                     data_emissao_nota_fiscal = table.Column<DateTime>(type: "datetime", nullable: false),
+                    NotaFiscalStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     fk_cod_cliente = table.Column<int>(type: "int", nullable: false),
                     uid_nota_fiscal = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -150,9 +151,9 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                 columns: new[] { "cod_cliente", "nome_cliente", "uid_cliente" },
                 values: new object[,]
                 {
-                    { 1, "Cliente 1", new Guid("c5b456a8-e507-46bf-b73a-cf83f3016555") },
-                    { 2, "Cliente 2", new Guid("3c11c144-0fb3-4e12-94a5-beda4bc588a4") },
-                    { 3, "Cliente 3", new Guid("b10b55f3-3f60-4b14-856a-77ad6236bfad") }
+                    { 1, "Cliente 1", new Guid("9d65d518-69d0-4a06-8148-e1ff338630ed") },
+                    { 2, "Cliente 2", new Guid("6c8159c0-4c2f-42d9-9189-085b768147c8") },
+                    { 3, "Cliente 3", new Guid("9b93876e-cb65-438d-8447-a7102cd87080") }
                 });
 
             migrationBuilder.InsertData(
@@ -160,9 +161,9 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                 columns: new[] { "cod_produto", "des_produto", "preco_produto", "uid_produto" },
                 values: new object[,]
                 {
-                    { 1, "Produto Teste 1", 99.99m, new Guid("3df3c297-a4bc-475c-95d6-c1bbc0392d18") },
-                    { 2, "Produto Teste 2", 55.99m, new Guid("ded68003-42ee-4c78-9e3c-00363f1fa90a") },
-                    { 3, "Produto Teste 3", 88.00m, new Guid("e3018670-fdd5-4682-9d81-45d6126932c3") }
+                    { 1, "Produto Teste 1", 99.99m, new Guid("79d8f754-f44d-48a8-a03b-bf7d2272b350") },
+                    { 2, "Produto Teste 2", 55.99m, new Guid("2d0dfa0b-a4e4-4616-b729-5735f657a7a9") },
+                    { 3, "Produto Teste 3", 88.00m, new Guid("3ac22123-a00d-4949-bdde-48e0e3cf7122") }
                 });
 
             migrationBuilder.InsertData(
@@ -187,12 +188,12 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "tb_nota_fiscal",
-                columns: new[] { "cod_nota_fiscal", "chave_acesso_nota_fiscal", "fk_cod_cliente", "data_emissao_nota_fiscal", "numero_nota_fiscal", "uid_nota_fiscal" },
+                columns: new[] { "cod_nota_fiscal", "chave_acesso_nota_fiscal", "fk_cod_cliente", "data_emissao_nota_fiscal", "NotaFiscalStatus", "numero_nota_fiscal", "uid_nota_fiscal" },
                 values: new object[,]
                 {
-                    { 1, "84815641816", 1, new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(7278), "12346578415", new Guid("6ab1f13a-efcf-4ee6-9bbe-28bcd89c7714") },
-                    { 2, "32433241816", 2, new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(7291), "12346578415", new Guid("320b47ac-512d-4fe4-9203-7f4850df76ad") },
-                    { 3, "67545634636", 3, new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(7293), "12341231231", new Guid("f216a845-91e4-4371-9ae5-78d441c4d793") }
+                    { 1, "84815641816", 1, new DateTime(2023, 5, 1, 18, 45, 45, 41, DateTimeKind.Local).AddTicks(7368), "ATIVA", "12346578415", new Guid("8a67c798-1034-47dd-8b2a-974db24c7233") },
+                    { 2, "32433241816", 2, new DateTime(2023, 5, 1, 18, 45, 45, 41, DateTimeKind.Local).AddTicks(7393), "ATIVA", "12346578415", new Guid("999fc73b-6e02-432a-941d-e2d8234ed487") },
+                    { 3, "67545634636", 3, new DateTime(2023, 5, 1, 18, 45, 45, 41, DateTimeKind.Local).AddTicks(7395), "ATIVA", "12341231231", new Guid("fcc1fb68-6ab3-49ac-8331-62cfa2b98393") }
                 });
 
             migrationBuilder.InsertData(
@@ -200,9 +201,9 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                 columns: new[] { "cod_nota_fiscal_produto", "data_compra_produto", "fk_nota_fiscal", "fk_produto", "preco_produto", "uid_nota_fiscal_produto" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(9569), 1, 1, 99.99m, new Guid("dc874688-6b8e-4406-801d-d069c56be22a") },
-                    { 2, new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(9617), 2, 2, 55.99m, new Guid("ea24fc65-d979-48a2-9cdf-00035e0265dd") },
-                    { 3, new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(9619), 3, 3, 88.00m, new Guid("21257742-fa03-47c7-97d8-c8622e3d6e39") }
+                    { 1, new DateTime(2023, 5, 1, 18, 45, 45, 41, DateTimeKind.Local).AddTicks(9625), 1, 1, 99.99m, new Guid("f1e628da-1f72-48bd-987f-d3a90b15ad1b") },
+                    { 2, new DateTime(2023, 5, 1, 18, 45, 45, 41, DateTimeKind.Local).AddTicks(9634), 2, 2, 55.99m, new Guid("91ae3c69-8ece-423a-acb5-b18931a93792") },
+                    { 3, new DateTime(2023, 5, 1, 18, 45, 45, 41, DateTimeKind.Local).AddTicks(9636), 3, 3, 88.00m, new Guid("07ff6762-69ac-4f27-9656-6fa403cd5ef7") }
                 });
 
             migrationBuilder.CreateIndex(

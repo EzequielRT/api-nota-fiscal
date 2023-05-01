@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Magma3.NotaFiscal.Domain.Enums;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Magma3.NotaFiscal.Infra.Data.Mappings
@@ -33,6 +34,11 @@ namespace Magma3.NotaFiscal.Infra.Data.Mappings
                 .HasColumnType("varchar(200)")
                 .IsRequired();
 
+            builder.Property(e => e.NotaFiscalStatus)
+                .HasConversion(
+                    x => x.ToString(), 
+                    x => (NotaFiscalStatus)Enum.Parse(typeof(NotaFiscalStatus), x));
+
             builder.Property(e => e.DataEmissao)
                 .HasColumnName("data_emissao_nota_fiscal")
                 .HasColumnType("datetime")
@@ -55,7 +61,8 @@ namespace Magma3.NotaFiscal.Infra.Data.Mappings
                     DataEmissao = DateTime.Now,
                     NumeroNota = "12346578415",
                     ClienteId = 1,
-                    ChaveAcesso = "84815641816"
+                    ChaveAcesso = "84815641816",
+                    NotaFiscalStatus = NotaFiscalStatus.ATIVA
                 },
                 new Domain.Entities.NotaFiscal()
                 {
@@ -63,7 +70,8 @@ namespace Magma3.NotaFiscal.Infra.Data.Mappings
                     DataEmissao = DateTime.Now,
                     NumeroNota = "12346578415",
                     ClienteId = 2,
-                    ChaveAcesso = "32433241816"
+                    ChaveAcesso = "32433241816",
+                    NotaFiscalStatus = NotaFiscalStatus.ATIVA
                 },
                 new Domain.Entities.NotaFiscal()
                 {
@@ -71,7 +79,8 @@ namespace Magma3.NotaFiscal.Infra.Data.Mappings
                     DataEmissao = DateTime.Now,
                     NumeroNota = "12341231231",
                     ClienteId = 3,
-                    ChaveAcesso = "67545634636"
+                    ChaveAcesso = "67545634636",
+                    NotaFiscalStatus = NotaFiscalStatus.ATIVA
                 }
             });
         }
