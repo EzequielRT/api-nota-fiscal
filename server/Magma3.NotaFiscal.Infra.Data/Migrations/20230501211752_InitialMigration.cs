@@ -45,20 +45,20 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tb_celular",
+                name: "tb_contato",
                 columns: table => new
                 {
-                    cod_celular = table.Column<int>(type: "int", nullable: false)
+                    cod_contato = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     celular_numero = table.Column<string>(type: "varchar(20)", nullable: false),
                     fk_cod_cliente = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_celular", x => x.cod_celular)
+                    table.PrimaryKey("PK_tb_contato", x => x.cod_contato)
                         .Annotation("SqlServer:Clustered", true);
                     table.ForeignKey(
-                        name: "FK_tb_celular_tb_cliente_fk_cod_cliente",
+                        name: "FK_tb_contato_tb_cliente_fk_cod_cliente",
                         column: x => x.fk_cod_cliente,
                         principalTable: "tb_cliente",
                         principalColumn: "cod_cliente",
@@ -150,9 +150,9 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                 columns: new[] { "cod_cliente", "nome_cliente", "uid_cliente" },
                 values: new object[,]
                 {
-                    { 1, "Cliente 1", new Guid("e6b4c469-6d09-4181-8af4-50251113052f") },
-                    { 2, "Cliente 2", new Guid("f20eda52-1e24-4bee-96fd-e3fe01afe650") },
-                    { 3, "Cliente 3", new Guid("eea7d355-9a0a-4a3f-a52d-609fe01e0f60") }
+                    { 1, "Cliente 1", new Guid("c5b456a8-e507-46bf-b73a-cf83f3016555") },
+                    { 2, "Cliente 2", new Guid("3c11c144-0fb3-4e12-94a5-beda4bc588a4") },
+                    { 3, "Cliente 3", new Guid("b10b55f3-3f60-4b14-856a-77ad6236bfad") }
                 });
 
             migrationBuilder.InsertData(
@@ -160,14 +160,14 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                 columns: new[] { "cod_produto", "des_produto", "preco_produto", "uid_produto" },
                 values: new object[,]
                 {
-                    { 1, "Produto Teste 1", 99.99m, new Guid("80a49885-ec96-4343-b2d0-89390c863359") },
-                    { 2, "Produto Teste 2", 55.99m, new Guid("40d70913-d22c-4daa-b1e6-04d46cff8d04") },
-                    { 3, "Produto Teste 3", 88.00m, new Guid("32ce4fa5-6f2a-43f0-b3a8-9fc4ca8eda9f") }
+                    { 1, "Produto Teste 1", 99.99m, new Guid("3df3c297-a4bc-475c-95d6-c1bbc0392d18") },
+                    { 2, "Produto Teste 2", 55.99m, new Guid("ded68003-42ee-4c78-9e3c-00363f1fa90a") },
+                    { 3, "Produto Teste 3", 88.00m, new Guid("e3018670-fdd5-4682-9d81-45d6126932c3") }
                 });
 
             migrationBuilder.InsertData(
-                table: "tb_celular",
-                columns: new[] { "cod_celular", "celular_numero", "fk_cod_cliente" },
+                table: "tb_contato",
+                columns: new[] { "cod_contato", "celular_numero", "fk_cod_cliente" },
                 values: new object[,]
                 {
                     { 1, "51998915689", 1 },
@@ -190,9 +190,9 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                 columns: new[] { "cod_nota_fiscal", "chave_acesso_nota_fiscal", "fk_cod_cliente", "data_emissao_nota_fiscal", "numero_nota_fiscal", "uid_nota_fiscal" },
                 values: new object[,]
                 {
-                    { 1, "84815641816", 1, new DateTime(2023, 4, 29, 22, 4, 23, 0, DateTimeKind.Local).AddTicks(891), "12346578415", new Guid("b276c5d2-6e12-47d6-9e9f-c08e763224f9") },
-                    { 2, "32433241816", 2, new DateTime(2023, 4, 29, 22, 4, 23, 0, DateTimeKind.Local).AddTicks(905), "12346578415", new Guid("09b5bc1f-204a-4c7e-85d2-1c81086e31b6") },
-                    { 3, "67545634636", 3, new DateTime(2023, 4, 29, 22, 4, 23, 0, DateTimeKind.Local).AddTicks(906), "12341231231", new Guid("fd9fd30e-4044-49eb-a0ce-dea3bb3cce3f") }
+                    { 1, "84815641816", 1, new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(7278), "12346578415", new Guid("6ab1f13a-efcf-4ee6-9bbe-28bcd89c7714") },
+                    { 2, "32433241816", 2, new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(7291), "12346578415", new Guid("320b47ac-512d-4fe4-9203-7f4850df76ad") },
+                    { 3, "67545634636", 3, new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(7293), "12341231231", new Guid("f216a845-91e4-4371-9ae5-78d441c4d793") }
                 });
 
             migrationBuilder.InsertData(
@@ -200,14 +200,14 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                 columns: new[] { "cod_nota_fiscal_produto", "data_compra_produto", "fk_nota_fiscal", "fk_produto", "preco_produto", "uid_nota_fiscal_produto" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 29, 22, 4, 23, 0, DateTimeKind.Local).AddTicks(3137), 1, 1, 99.99m, new Guid("245a557a-adf9-40dd-9427-bcf5ca51429b") },
-                    { 2, new DateTime(2023, 4, 29, 22, 4, 23, 0, DateTimeKind.Local).AddTicks(3148), 2, 2, 55.99m, new Guid("81039b0e-e786-49ec-ae45-d2286a89797b") },
-                    { 3, new DateTime(2023, 4, 29, 22, 4, 23, 0, DateTimeKind.Local).AddTicks(3155), 3, 3, 88.00m, new Guid("70854145-b50d-47f1-ba71-a2148eedd18d") }
+                    { 1, new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(9569), 1, 1, 99.99m, new Guid("dc874688-6b8e-4406-801d-d069c56be22a") },
+                    { 2, new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(9617), 2, 2, 55.99m, new Guid("ea24fc65-d979-48a2-9cdf-00035e0265dd") },
+                    { 3, new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(9619), 3, 3, 88.00m, new Guid("21257742-fa03-47c7-97d8-c8622e3d6e39") }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_celular_fk_cod_cliente",
-                table: "tb_celular",
+                name: "IX_tb_contato_fk_cod_cliente",
+                table: "tb_contato",
                 column: "fk_cod_cliente",
                 unique: true);
 
@@ -237,7 +237,7 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tb_celular");
+                name: "tb_contato");
 
             migrationBuilder.DropTable(
                 name: "tb_endereco");

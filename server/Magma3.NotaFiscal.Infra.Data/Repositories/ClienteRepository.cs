@@ -20,9 +20,9 @@ namespace Magma3.NotaFiscal.Infra.Data.Repositories
             await _context.Clientes.AddAsync(cliente, cancellationToken);
         }
 
-        public async Task AdicionarClienteCelularAsync(Celular celular, CancellationToken cancellationToken = default)
+        public async Task AdicionarClienteContatoAsync(Contato contato, CancellationToken cancellationToken = default)
         {
-            await _context.Celulares.AddAsync(celular, cancellationToken);
+            await _context.Contatos.AddAsync(contato, cancellationToken);
         }
 
         public async Task AdicionarClienteEnderecoAsync(Endereco endereco, CancellationToken cancellationToken = default)

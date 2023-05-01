@@ -25,8 +25,8 @@ namespace Magma3.NotaFiscal.Application.Commands.RegistrarNotaFiscal
             await _uow.Clientes.AdicionarClienteEnderecoAsync(endereco);
             await _uow.CompleteAsync();
 
-            var celular = request.Celular.ToEntity(cliente.Id);
-            await _uow.Clientes.AdicionarClienteCelularAsync(celular);
+            var celular = request.Contato.ToEntity(cliente.Id);
+            await _uow.Clientes.AdicionarClienteContatoAsync(celular);
             await _uow.CompleteAsync();
 
             var produto = request.Produto.ToEntity();

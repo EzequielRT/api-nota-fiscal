@@ -14,7 +14,7 @@ namespace Magma3.NotaFiscal.Infra.Data.Context
         public virtual DbSet<Produto> Produtos { get; set; }
         public virtual DbSet<NotaFiscalProduto> NotasFiscaisProdutos { get; set; }
         public virtual DbSet<Endereco> Enderecos { get; set; }
-        public virtual DbSet<Celular> Celulares { get; set; }
+        public virtual DbSet<Contato> Contatos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

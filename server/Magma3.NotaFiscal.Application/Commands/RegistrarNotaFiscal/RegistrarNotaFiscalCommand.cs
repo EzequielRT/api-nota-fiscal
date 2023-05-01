@@ -10,7 +10,7 @@ namespace Magma3.NotaFiscal.Application.Commands.RegistrarNotaFiscal
         public NotaFiscalInputModel NotaFiscal { get; set; }
         public ClienteInputModel Cliente { get; set; }
         public EnderecoInputModel Endereco { get; set; }
-        public CelularInputModel Celular { get; set; }
+        public ContatoInputModel Contato { get; set; }
         public ProdutoInputModel Produto { get; set; }
     }
     public class NotaFiscalInputModel
@@ -61,13 +61,13 @@ namespace Magma3.NotaFiscal.Application.Commands.RegistrarNotaFiscal
         }
     }
 
-    public class CelularInputModel
+    public class ContatoInputModel
     {
         public string CelularNumero { get; set; }
 
-        public Celular ToEntity(int clienteId)
+        public Contato ToEntity(int clienteId)
         {
-            return new Celular(CelularNumero, clienteId);
+            return new Contato(CelularNumero, clienteId);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Magma3.NotaFiscal.Application.Commands.RegistrarNotaFiscal;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Magma3.NotaFiscal.Application
@@ -8,8 +7,9 @@ namespace Magma3.NotaFiscal.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services
-                .AddMediatR(typeof(RegistrarNotaFiscalCommand));
+            var assemblyMediatrProject = AppDomain.CurrentDomain.Load("Magma3.NotaFiscal.Application");
+
+            services.AddMediatR(assemblyMediatrProject);
 
             return services;
         }

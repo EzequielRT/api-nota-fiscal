@@ -2,13 +2,13 @@
 
 namespace Magma3.NotaFiscal.Domain.ValueObjects
 {
-    public class Celular
+    public class Contato
     {
-        public Celular() { }
+        public Contato() { }
 
-        public Celular(string numeroCelular, int clienteId)
+        public Contato(string celularNumero, int clienteId)
         {
-            CelularNumero = numeroCelular;
+            CelularNumero = celularNumero;
             ClienteId = clienteId;
         }
 
@@ -18,15 +18,16 @@ namespace Magma3.NotaFiscal.Domain.ValueObjects
         public int ClienteId { get; set; }
         public virtual Cliente Cliente { get; set; }
 
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
-            return obj is Celular celular &&
-                   CelularNumero == celular.CelularNumero;
+            return obj is Contato contato &&
+                   Id == contato.Id &&
+                   CelularNumero == contato.CelularNumero;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(CelularNumero);
+            return HashCode.Combine(Id, CelularNumero);
         }
     }
 }

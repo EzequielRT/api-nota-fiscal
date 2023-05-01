@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Magma3.NotaFiscal.Infra.Data.Mappings
 {
-    public class CelularMapping : IEntityTypeConfiguration<Celular>
+    public class ContatoMapping : IEntityTypeConfiguration<Contato>
     {
-        public void Configure(EntityTypeBuilder<Celular> builder)
+        public void Configure(EntityTypeBuilder<Contato> builder)
         {
             builder.HasKey(e => e.Id)
                 .IsClustered();
 
             builder.Property(e => e.Id)
-                .HasColumnName("cod_celular")
+                .HasColumnName("cod_contato")
                 .ValueGeneratedOnAdd();
 
             builder.Property(e => e.ClienteId)
@@ -25,13 +25,13 @@ namespace Magma3.NotaFiscal.Infra.Data.Mappings
                .IsRequired();            
 
             builder
-                .ToTable("tb_celular");
+                .ToTable("tb_contato");
 
-            builder.HasData(new List<Celular>()
+            builder.HasData(new List<Contato>()
             {
-                new Celular() { Id = 1, CelularNumero = "51998915689", ClienteId = 1},
-                new Celular() { Id = 2, CelularNumero = "51995674356", ClienteId = 2},
-                new Celular() { Id = 3, CelularNumero = "51876785678", ClienteId = 3}
+                new Contato() { Id = 1, CelularNumero = "51998915689", ClienteId = 1},
+                new Contato() { Id = 2, CelularNumero = "51995674356", ClienteId = 2},
+                new Contato() { Id = 3, CelularNumero = "51876785678", ClienteId = 3}
             });
         }
     }

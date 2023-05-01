@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Magma3.NotaFiscal.Infra.Data.Migrations
 {
     [DbContext(typeof(NotaFiscalDbContext))]
-    [Migration("20230430010423_InitialMigration")]
+    [Migration("20230501211752_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -54,19 +54,19 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                         {
                             Id = 1,
                             NomeCliente = "Cliente 1",
-                            UId = new Guid("e6b4c469-6d09-4181-8af4-50251113052f")
+                            UId = new Guid("c5b456a8-e507-46bf-b73a-cf83f3016555")
                         },
                         new
                         {
                             Id = 2,
                             NomeCliente = "Cliente 2",
-                            UId = new Guid("f20eda52-1e24-4bee-96fd-e3fe01afe650")
+                            UId = new Guid("3c11c144-0fb3-4e12-94a5-beda4bc588a4")
                         },
                         new
                         {
                             Id = 3,
                             NomeCliente = "Cliente 3",
-                            UId = new Guid("eea7d355-9a0a-4a3f-a52d-609fe01e0f60")
+                            UId = new Guid("b10b55f3-3f60-4b14-856a-77ad6236bfad")
                         });
                 });
 
@@ -115,27 +115,27 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                             Id = 1,
                             ChaveAcesso = "84815641816",
                             ClienteId = 1,
-                            DataEmissao = new DateTime(2023, 4, 29, 22, 4, 23, 0, DateTimeKind.Local).AddTicks(891),
+                            DataEmissao = new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(7278),
                             NumeroNota = "12346578415",
-                            UId = new Guid("b276c5d2-6e12-47d6-9e9f-c08e763224f9")
+                            UId = new Guid("6ab1f13a-efcf-4ee6-9bbe-28bcd89c7714")
                         },
                         new
                         {
                             Id = 2,
                             ChaveAcesso = "32433241816",
                             ClienteId = 2,
-                            DataEmissao = new DateTime(2023, 4, 29, 22, 4, 23, 0, DateTimeKind.Local).AddTicks(905),
+                            DataEmissao = new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(7291),
                             NumeroNota = "12346578415",
-                            UId = new Guid("09b5bc1f-204a-4c7e-85d2-1c81086e31b6")
+                            UId = new Guid("320b47ac-512d-4fe4-9203-7f4850df76ad")
                         },
                         new
                         {
                             Id = 3,
                             ChaveAcesso = "67545634636",
                             ClienteId = 3,
-                            DataEmissao = new DateTime(2023, 4, 29, 22, 4, 23, 0, DateTimeKind.Local).AddTicks(906),
+                            DataEmissao = new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(7293),
                             NumeroNota = "12341231231",
-                            UId = new Guid("fd9fd30e-4044-49eb-a0ce-dea3bb3cce3f")
+                            UId = new Guid("f216a845-91e4-4371-9ae5-78d441c4d793")
                         });
                 });
 
@@ -182,29 +182,29 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DataCompra = new DateTime(2023, 4, 29, 22, 4, 23, 0, DateTimeKind.Local).AddTicks(3137),
+                            DataCompra = new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(9569),
                             NotaFiscalId = 1,
                             ProdutoId = 1,
                             ProdutoPreco = 99.99m,
-                            UId = new Guid("245a557a-adf9-40dd-9427-bcf5ca51429b")
+                            UId = new Guid("dc874688-6b8e-4406-801d-d069c56be22a")
                         },
                         new
                         {
                             Id = 2,
-                            DataCompra = new DateTime(2023, 4, 29, 22, 4, 23, 0, DateTimeKind.Local).AddTicks(3148),
+                            DataCompra = new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(9617),
                             NotaFiscalId = 2,
                             ProdutoId = 2,
                             ProdutoPreco = 55.99m,
-                            UId = new Guid("81039b0e-e786-49ec-ae45-d2286a89797b")
+                            UId = new Guid("ea24fc65-d979-48a2-9cdf-00035e0265dd")
                         },
                         new
                         {
                             Id = 3,
-                            DataCompra = new DateTime(2023, 4, 29, 22, 4, 23, 0, DateTimeKind.Local).AddTicks(3155),
+                            DataCompra = new DateTime(2023, 5, 1, 18, 17, 52, 569, DateTimeKind.Local).AddTicks(9619),
                             NotaFiscalId = 3,
                             ProdutoId = 3,
                             ProdutoPreco = 88.00m,
-                            UId = new Guid("70854145-b50d-47f1-ba71-a2148eedd18d")
+                            UId = new Guid("21257742-fa03-47c7-97d8-c8622e3d6e39")
                         });
                 });
 
@@ -242,30 +242,30 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                             Id = 1,
                             Descricao = "Produto Teste 1",
                             ProdutoPreco = 99.99m,
-                            UId = new Guid("80a49885-ec96-4343-b2d0-89390c863359")
+                            UId = new Guid("3df3c297-a4bc-475c-95d6-c1bbc0392d18")
                         },
                         new
                         {
                             Id = 2,
                             Descricao = "Produto Teste 2",
                             ProdutoPreco = 55.99m,
-                            UId = new Guid("40d70913-d22c-4daa-b1e6-04d46cff8d04")
+                            UId = new Guid("ded68003-42ee-4c78-9e3c-00363f1fa90a")
                         },
                         new
                         {
                             Id = 3,
                             Descricao = "Produto Teste 3",
                             ProdutoPreco = 88.00m,
-                            UId = new Guid("32ce4fa5-6f2a-43f0-b3a8-9fc4ca8eda9f")
+                            UId = new Guid("e3018670-fdd5-4682-9d81-45d6126932c3")
                         });
                 });
 
-            modelBuilder.Entity("Magma3.NotaFiscal.Domain.ValueObjects.Celular", b =>
+            modelBuilder.Entity("Magma3.NotaFiscal.Domain.ValueObjects.Contato", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("cod_celular");
+                        .HasColumnName("cod_contato");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
@@ -285,7 +285,7 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                     b.HasIndex("ClienteId")
                         .IsUnique();
 
-                    b.ToTable("tb_celular", (string)null);
+                    b.ToTable("tb_contato", (string)null);
 
                     b.HasData(
                         new
@@ -426,11 +426,11 @@ namespace Magma3.NotaFiscal.Infra.Data.Migrations
                     b.Navigation("Produto");
                 });
 
-            modelBuilder.Entity("Magma3.NotaFiscal.Domain.ValueObjects.Celular", b =>
+            modelBuilder.Entity("Magma3.NotaFiscal.Domain.ValueObjects.Contato", b =>
                 {
                     b.HasOne("Magma3.NotaFiscal.Domain.Entities.Cliente", "Cliente")
                         .WithOne("Celular")
-                        .HasForeignKey("Magma3.NotaFiscal.Domain.ValueObjects.Celular", "ClienteId")
+                        .HasForeignKey("Magma3.NotaFiscal.Domain.ValueObjects.Contato", "ClienteId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
