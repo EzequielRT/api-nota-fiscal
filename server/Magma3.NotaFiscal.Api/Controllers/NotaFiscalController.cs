@@ -10,7 +10,7 @@ namespace Magma3.NotaFiscal.Api.Controllers
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/")]
-    public class NotaFiscalController : ControllerBase
+    public class NotaFiscalController : ApiController
     {
         private readonly IMediator _mediator;
 
@@ -25,9 +25,7 @@ namespace Magma3.NotaFiscal.Api.Controllers
         {
             Guid? uId = await _mediator.Send(command, cancellationToken);
 
-            if (uId == null) return BadRequest();
-
-            return CreatedAtAction(nameof(BuscarNotaFiscalPeloUId), new { notaFiscalUId = uId }, command);
+            return ResponseApiCreatedAtAction(nameof(BuscarNotaFiscalPeloUId), new { notaFiscalUId = uId }, command);
         }
 
 
@@ -35,7 +33,7 @@ namespace Magma3.NotaFiscal.Api.Controllers
         [Route("notas-fiscais/buscar-todas")]
         public async Task<ActionResult> BuscarTodasNotasFiscais(CancellationToken cancellationToken)
         {
-            return Ok(await _mediator.Send(new BuscarTodasNotasFiscaisQuery(), cancellationToken));
+            return ResponseApiOk(await _mediator.Send(new BuscarTodasNotasFiscaisQuery(), cancellationToken));
         }
 
         [HttpGet]
@@ -44,20 +42,18 @@ namespace Magma3.NotaFiscal.Api.Controllers
         {
             var notaFiscal = await _mediator.Send(new BuscarNotaFiscalPeloUIdQuery(notaFiscalUId), cancellationToken);
 
-            if (notaFiscal == null) return NotFound();
+            if (notaFiscal == null) return ResponseApiNotFound();
 
-            return Ok(notaFiscal);
+            return ResponseApiOk(notaFiscal);
         }
 
         [HttpDelete]
         [Route("notas-fiscais/excluir/{notaFiscalUId}")]
         public async Task<ActionResult> ExcluirNotaFiscalPeloUId([FromRoute] Guid notaFiscalUId, CancellationToken cancellationToken)
         {
-            var notaFiscalExcluida = await _mediator.Send(new ExluirNotaFiscalCommand(notaFiscalUId), cancellationToken);
+            await _mediator.Send(new ExluirNotaFiscalCommand(notaFiscalUId), cancellationToken);
 
-            if (notaFiscalExcluida == false) return BadRequest();
-
-            return NoContent();
+            return ResponseApiOk();
         }
     }
 }

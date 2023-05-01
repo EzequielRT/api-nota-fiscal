@@ -49,6 +49,8 @@ namespace Magma3.NotaFiscal.Application.Commands.RegistrarNotaFiscal
 
             await _uow.CommitAsync();
 
+            request.NotaFiscal.SetNotaFiscalUId(notaFiscal.UId);
+
             return notaFiscal.UId;
         }
     }

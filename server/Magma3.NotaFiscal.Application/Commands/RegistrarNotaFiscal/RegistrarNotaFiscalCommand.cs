@@ -15,9 +15,12 @@ namespace Magma3.NotaFiscal.Application.Commands.RegistrarNotaFiscal
     }
     public class NotaFiscalInputModel
     {
+        public Guid NotaFiscalUId { get; private set; }
         public string NumeroNota { get; set; }
         public string ChaveAcesso { get; set; }
         public DateTime DataEmissao { get; set; }
+
+        public void SetNotaFiscalUId(Guid notaFiscalUId) => NotaFiscalUId = notaFiscalUId;
 
         public Domain.Entities.NotaFiscal ToEntity(int clienteId)
         {
