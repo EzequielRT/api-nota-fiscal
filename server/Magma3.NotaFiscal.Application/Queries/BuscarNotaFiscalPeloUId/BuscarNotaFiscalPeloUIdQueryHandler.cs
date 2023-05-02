@@ -25,7 +25,7 @@ namespace Magma3.NotaFiscal.Application.Queries.BuscarNotaFiscalPeloUId
 
             var notasFiscaisViewModel = NotaFiscalViewModel.FromEntity(notaFiscal);
 
-            request.SetNotaFiscal(notasFiscaisViewModel);
+            request.SetResponse(notasFiscaisViewModel);
 
             return true;
         }

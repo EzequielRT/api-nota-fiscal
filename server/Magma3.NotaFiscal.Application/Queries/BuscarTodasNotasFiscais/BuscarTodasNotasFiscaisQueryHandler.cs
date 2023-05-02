@@ -27,7 +27,7 @@ namespace Magma3.NotaFiscal.Application.Queries.BuscarTodasNotasFiscais
                 .Select(x => NotaFiscalViewModel.FromEntity(x))
                 .ToList();
 
-            request.SetNotasFiscais(notasFiscaisViewModel);
+            request.SetResponse(notasFiscaisViewModel);
 
             return true;
         }

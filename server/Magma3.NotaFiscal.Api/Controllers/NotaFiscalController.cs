@@ -42,7 +42,7 @@ namespace Magma3.NotaFiscal.Api.Controllers
 
             await _mediator.SendCommand(query, cancellationToken);
 
-            return ResponseApiOk(query.NotasFiscais);
+            return ResponseApiOk(query.GetResponse());
         }
 
         [HttpGet]
@@ -53,9 +53,9 @@ namespace Magma3.NotaFiscal.Api.Controllers
 
             await _mediator.SendCommand(query, cancellationToken);
 
-            if (query.NotaFiscal == null) return ResponseApiNotFound();
+            if (query.GetResponse() == null) return ResponseApiNotFound();
 
-            return ResponseApiOk(query.NotaFiscal);
+            return ResponseApiOk(query.GetResponse());
         }
 
         [HttpDelete]

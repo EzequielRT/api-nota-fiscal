@@ -12,8 +12,8 @@ namespace Magma3.NotaFiscal.Application.Queries.BuscarNotaFiscalPeloUId
 
         public Guid NotaFiscalUId { get; set; }
 
-        public NotaFiscalViewModel NotaFiscal { get; private set; }
-
-        public void SetNotaFiscal(NotaFiscalViewModel notaFiscal) => NotaFiscal = notaFiscal;
+        private NotaFiscalViewModel _notaFiscal { get; set; }
+        public void SetResponse(NotaFiscalViewModel notaFiscal) => _notaFiscal = notaFiscal;
+        public NotaFiscalViewModel GetResponse() => _notaFiscal;
     }
 }

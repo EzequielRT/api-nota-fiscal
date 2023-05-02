@@ -5,8 +5,8 @@ namespace Magma3.NotaFiscal.Application.Queries.BuscarTodasNotasFiscais
 {
     public class BuscarTodasNotasFiscaisQuery : Command
     {
-        public List<NotaFiscalViewModel> NotasFiscais { get; private set; }
-
-        public void SetNotasFiscais(List<NotaFiscalViewModel> notasFiscais) => NotasFiscais = notasFiscais;
+        private List<NotaFiscalViewModel> _notasFiscais { get; set; }
+        public void SetResponse(List<NotaFiscalViewModel> notasFiscais) => _notasFiscais = notasFiscais;
+        public List<NotaFiscalViewModel> GetResponse() => _notasFiscais;
     }
 }
