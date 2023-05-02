@@ -33,7 +33,7 @@ namespace Magma3.NotaFiscal.Infra.Data.Mappings
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
-                .HasOne(e => e.Celular)
+                .HasOne(e => e.Contato)
                 .WithOne(e => e.Cliente)
                 .HasForeignKey<Contato>(e => e.ClienteId)
                 .OnDelete(DeleteBehavior.Restrict);

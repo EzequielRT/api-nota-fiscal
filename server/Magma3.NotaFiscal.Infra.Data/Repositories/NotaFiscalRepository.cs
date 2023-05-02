@@ -31,7 +31,7 @@ namespace Magma3.NotaFiscal.Infra.Data.Repositories
                 .Include(x => x.Cliente)
                     .ThenInclude(x => x.Endereco)
                 .Include(x => x.Cliente)
-                    .ThenInclude(x => x.Celular)
+                    .ThenInclude(x => x.Contato)
                 .Include(x => x.Produtos)
                     .ThenInclude(x => x.Produto)
                 .FirstOrDefaultAsync(x => x.UId == notaFiscalUId && x.NotaFiscalStatus != NotaFiscalStatus.EXCLUIDA, cancellationToken);
@@ -46,7 +46,7 @@ namespace Magma3.NotaFiscal.Infra.Data.Repositories
                 .Include(x => x.Cliente)
                     .ThenInclude(x => x.Endereco)
                 .Include(x => x.Cliente)
-                    .ThenInclude(x => x.Celular)
+                    .ThenInclude(x => x.Contato)
                 .Include(x => x.Produtos)
                     .ThenInclude(x => x.Produto)
                 .FirstOrDefaultAsync(x => x.UId == notaFiscalUId && x.NotaFiscalStatus != NotaFiscalStatus.EXCLUIDA, cancellationToken);
@@ -61,7 +61,7 @@ namespace Magma3.NotaFiscal.Infra.Data.Repositories
                 .Include(x => x.Cliente)
                     .ThenInclude(x => x.Endereco)
                 .Include(x => x.Cliente)
-                    .ThenInclude(x => x.Celular)
+                    .ThenInclude(x => x.Contato)
                 .Include(x => x.Produtos)
                     .ThenInclude(x => x.Produto)
                 .Where(x => x.NotaFiscalStatus != NotaFiscalStatus.EXCLUIDA)

@@ -1,12 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Magma3.NotaFiscal.Application.Mediator.Notifications;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Magma3.NotaFiscal.Api.Controllers
 {
     public abstract class ApiController : ControllerBase 
     {
+        protected ILogger _logger;
+        protected readonly DomainNotificationHandler _notifications;
+        protected ApiController(ILogger logger, INotificationHandler<DomainNotification> notifications)
+        {
+            _logger = logger;
+            _notifications = (DomainNotificationHandler)notifications;
+        }
+
         protected ActionResult ResponseApiOk(object? result = null)
         {
-            if (OperacaoValida())
+            ModelStateIsValid();
+
+            if (!_notifications.HasNotifications())
             {
                 return Ok(new 
                 {
@@ -18,13 +30,15 @@ namespace Magma3.NotaFiscal.Api.Controllers
             return BadRequest(new
             {
                 success = false,
-                errors = ObterErros()
+                errors = _notifications.GetNotifications().Select(n => new  { Message = n.Value }).FirstOrDefault()
             });
         }
 
         protected ActionResult ResponseApiCreatedAtAction(string? actionName, object? routeValues, object? result = null)
         {
-            if (OperacaoValida())
+            ModelStateIsValid();
+
+            if (!_notifications.HasNotifications())
             {
                 return CreatedAtAction(actionName, routeValues, new { success = true, data = result });
             }
@@ -32,28 +46,26 @@ namespace Magma3.NotaFiscal.Api.Controllers
             return BadRequest(new
             {
                 success = false,
-                errors = ObterErros()
+                errors = _notifications.GetNotifications().Select(n => new { Message = n.Value }).FirstOrDefault()
             });
-        }        
+        }
 
         protected ActionResult ResponseApiNotFound()
         {
             return NotFound(new
             {
                 success = false,
-                errors = ObterErros()
+                errors = _notifications.GetNotifications().Select(n => new { Message = n.Value }).FirstOrDefault()
             });
         }
 
-        protected bool OperacaoValida()
+        private void ModelStateIsValid()
         {
-            // minhas validações
-            return true;
-        }
-
-        protected string ObterErros()
-        {
-            return "Ocorreu um erro!";
+            if (!ModelState.IsValid)
+            {
+                for (var i = 0; i < ModelState.Count; i++)
+                    _notifications.Handle(new DomainNotification(ModelState.Keys.ToList()[i], ModelState.Values.ToList()[i].Errors.FirstOrDefault().ErrorMessage), CancellationToken.None);
+            }
         }
     }
 }

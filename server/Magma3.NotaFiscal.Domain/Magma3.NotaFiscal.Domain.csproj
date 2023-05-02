@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mediator\" />
+    <Compile Remove="Mediator\**" />
+    <EmbeddedResource Remove="Mediator\**" />
+    <None Remove="Mediator\**" />
   </ItemGroup>
 
 </Project>

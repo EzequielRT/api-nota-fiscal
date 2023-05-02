@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Magma3.NotaFiscal.Application.Mediator;
+using Magma3.NotaFiscal.Application.Mediator.Notifications;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Magma3.NotaFiscal.Application
@@ -9,7 +11,11 @@ namespace Magma3.NotaFiscal.Application
         {
             var assemblyMediatrProject = AppDomain.CurrentDomain.Load("Magma3.NotaFiscal.Application");
 
-            services.AddMediatR(assemblyMediatrProject);
+            services.AddMediatR(o => { o.AddPipelineValidator(services, assemblyMediatrProject); }, assemblyMediatrProject);
+
+            // mediatr - pipeline behavior
+            services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
+            services.AddScoped<IMediatorHandler, MediatorHandler>();
 
             return services;
         }

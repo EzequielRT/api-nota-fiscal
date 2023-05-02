@@ -1,20 +1,25 @@
 ﻿using Magma3.NotaFiscal.Application.DTOs;
-using Magma3.NotaFiscal.Domain.Entities;
+using Magma3.NotaFiscal.Application.Mediator;
+using Magma3.NotaFiscal.Application.Mediator.Notifications;
 using Magma3.NotaFiscal.Domain.Repositories;
 using MediatR;
 
 namespace Magma3.NotaFiscal.Application.Queries.BuscarTodasNotasFiscais
 {
-    public class BuscarTodasNotasFiscaisQueryHandler : IRequestHandler<BuscarTodasNotasFiscaisQuery, List<NotaFiscalViewModel>>
+    public class BuscarTodasNotasFiscaisQueryHandler : CommandHandler,
+        IRequestHandler<BuscarTodasNotasFiscaisQuery, bool>
     {
         private readonly INotaFiscalRepository _notaFiscalRepository;
 
-        public BuscarTodasNotasFiscaisQueryHandler(INotaFiscalRepository notaFiscalRepository)
+        public BuscarTodasNotasFiscaisQueryHandler(
+            IMediatorHandler mediator,
+            INotificationHandler<DomainNotification> notifications,
+            INotaFiscalRepository notaFiscalRepository) : base(mediator, notifications)
         {
             _notaFiscalRepository = notaFiscalRepository;
         }
 
-        public async Task<List<NotaFiscalViewModel>> Handle(BuscarTodasNotasFiscaisQuery request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(BuscarTodasNotasFiscaisQuery request, CancellationToken cancellationToken)
         {
             var notasFiscais = await _notaFiscalRepository.BuscarTodasNotasFiscaisAsync(cancellationToken);
 
@@ -22,7 +27,9 @@ namespace Magma3.NotaFiscal.Application.Queries.BuscarTodasNotasFiscais
                 .Select(x => NotaFiscalViewModel.FromEntity(x))
                 .ToList();
 
-            return notasFiscaisViewModel;
+            request.SetNotasFiscais(notasFiscaisViewModel);
+
+            return true;
         }
     }
 }

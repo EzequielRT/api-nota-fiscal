@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using Magma3.NotaFiscal.Application.Mediator.Message;
 
 namespace Magma3.NotaFiscal.Application.Commands.ExluirNotaFiscal
 {
-    public class ExluirNotaFiscalCommand : IRequest<bool>
+    public class ExluirNotaFiscalCommand : Command
     {
         public ExluirNotaFiscalCommand(Guid notaFiscalUId)
         {

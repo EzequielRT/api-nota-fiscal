@@ -1,9 +1,9 @@
 ﻿using Magma3.NotaFiscal.Application.DTOs;
-using MediatR;
+using Magma3.NotaFiscal.Application.Mediator.Message;
 
 namespace Magma3.NotaFiscal.Application.Queries.BuscarNotaFiscalPeloUId
 {
-    public class BuscarNotaFiscalPeloUIdQuery : IRequest<NotaFiscalViewModel>
+    public class BuscarNotaFiscalPeloUIdQuery : Command
     {
         public BuscarNotaFiscalPeloUIdQuery(Guid notaFiscalUId)
         {
@@ -11,5 +11,9 @@ namespace Magma3.NotaFiscal.Application.Queries.BuscarNotaFiscalPeloUId
         }
 
         public Guid NotaFiscalUId { get; set; }
+
+        public NotaFiscalViewModel NotaFiscal { get; private set; }
+
+        public void SetNotaFiscal(NotaFiscalViewModel notaFiscal) => NotaFiscal = notaFiscal;
     }
 }

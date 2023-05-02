@@ -1,16 +1,14 @@
-﻿using Magma3.NotaFiscal.Domain.Entities;
+﻿using Magma3.NotaFiscal.Application.Mediator.Message;
+using Magma3.NotaFiscal.Domain.Entities;
 using Magma3.NotaFiscal.Domain.ValueObjects;
-using MediatR;
 
 namespace Magma3.NotaFiscal.Application.Commands.RegistrarNotaFiscal
 {
-    public class RegistrarNotaFiscalCommand : IRequest<Guid>
+    public class RegistrarNotaFiscalCommand : Command
     {
         public DateTime DataCompra { get; set; }
         public NotaFiscalInputModel NotaFiscal { get; set; }
-        public ClienteInputModel Cliente { get; set; }
-        public EnderecoInputModel Endereco { get; set; }
-        public ContatoInputModel Contato { get; set; }
+        public ClienteInputModel Cliente { get; set; }        
         public ProdutoInputModel Produto { get; set; }
     }
     public class NotaFiscalInputModel
@@ -42,6 +40,8 @@ namespace Magma3.NotaFiscal.Application.Commands.RegistrarNotaFiscal
     public class ClienteInputModel
     {
         public string NomeCliente { get; set; }
+        public EnderecoInputModel Endereco { get; set; }
+        public ContatoInputModel Contato { get; set; }
 
         public Cliente ToEntity()
         {

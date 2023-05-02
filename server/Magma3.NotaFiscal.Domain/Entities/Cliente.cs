@@ -17,7 +17,7 @@ namespace Magma3.NotaFiscal.Domain.Entities
         public string NomeCliente { get; set; }
 
         public virtual Endereco Endereco { get; set; }
-        public virtual Contato Celular { get; set; }
+        public virtual Contato Contato { get; set; }
         public virtual List<NotaFiscal> NotaFiscais { get; set; }
     }
 }
